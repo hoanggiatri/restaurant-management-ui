@@ -1,0 +1,39 @@
+<div class="mx-60 py-10">
+  <h1 class="text-3xl font-bold">All Users</h1>
+  <div class="flex justify-end">
+    <button (click)="addUser()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      Add User
+    </button>
+  </div>
+  <div class="shadow-md text-left rounded-md mt-4">
+    <table class="w-full rounded-md">
+      <thead>
+        <tr>
+          <th class="px-4 border py-2">Name</th>
+          <th class="px-4 border py-2">Email</th>
+          <th class="px-4 border py-2">Phone Number</th>
+          <th class="px-4 border py-2">Role</th>
+          <th class="px-4 border py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of users; let i = index">
+          <td class="border px-4 py-2">{{ item.fullName }}</td>
+          <td class="border px-4 py-2">{{ item.email }}</td>
+          <td class="border px-4 py-2">{{ item.phoneNumber }}</td>
+          <td class="border px-4 py-2">{{ item.roles.join(" , ") || '-' }}</td>
+          <td class="border px-4 py-2">
+            <div class="flex justify-center space-x-2">
+              <!-- Edit button -->
+              <button (click)="editUser(item.id)"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+              <!-- Delete button -->
+              <button (click)="deleteUser(item.id)"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

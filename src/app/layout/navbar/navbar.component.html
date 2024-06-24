@@ -1,0 +1,82 @@
+<div>
+    <mat-toolbar color="primary" style="padding:10px 50px">
+        <button mat-icon-button>
+            <mat-icon>home</mat-icon>
+        </button>
+        <a routerLink="/">HGT Restaurant</a>
+        <div class="w-full"></div>
+
+        @if(isLoggedIn()){
+        <div *ngIf="authService.getUserDetail() as userDetail">
+            <div class="flex gap-5 items-center">
+                <a *ngIf="userDetail?.roles.includes('Admin') || userDetail?.roles.includes('Manager')" mat-button routerLink="/admin/users">
+                    <mat-icon>
+                        groups
+                    </mat-icon>
+                    Users
+                </a>
+                <a *ngIf="userDetail?.roles.includes('Admin') || userDetail?.roles.includes('Manager')" mat-button routerLink="/admin/roles">
+                    <mat-icon>
+                        settings
+                    </mat-icon>
+                    Roles
+                </a>
+                <a *ngIf="userDetail?.roles.includes('Admin') || userDetail?.roles.includes('Manager')" mat-button routerLink="/admin/category">
+                    Category
+                </a>
+                <a *ngIf="userDetail?.roles.includes('Admin') || userDetail?.roles.includes('Manager')" mat-button routerLink="/admin/table">
+                    Table
+                </a>
+                <a *ngIf="userDetail?.roles.includes('Admin') || userDetail?.roles.includes('Manager')" mat-button routerLink="/admin/menu-item">
+                    Menu Item
+                </a>
+                <a *ngIf="userDetail?.roles.includes('Admin') || userDetail?.roles.includes('Manager') || userDetail?.roles.includes('Employee')" mat-button routerLink="/admin/order-create">
+                    Order
+                </a>
+                <a [matMenuTriggerFor]="menu" class="flex gap-2 cursor-pointer items-center">
+                    <div
+                        class="bg-red-400 text-white font-bold shadow-md rounded-full w-5 h-5 p-5 flex justify-center items-center">
+                        {{userDetail!.fullName[0].toUpperCase()}}
+                    </div>
+                    <div class="text-white flex flex-col">
+                        <h1 class="p-0 m-0 font-medium">
+                            {{userDetail?.fullName}}
+                        </h1>
+                        <p class="p-0 m-0 font-medium text-xs">
+                            {{userDetail?.roles}}
+                        </p>
+                    </div>
+                </a>
+                <mat-menu #menu="matMenu">
+                    <button [routerLink]="['account',userDetail.id]" mat-menu-item>
+                        <mat-icon>account_circle</mat-icon>
+                        <span>
+                            View Profile
+                        </span>
+                    </button>
+                    <button (click)="logout()" mat-menu-item>
+                        <mat-icon>
+                            logout
+                        </mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+        }@else{
+        <div>
+            <div class="flex gap5 items-center">
+                <a mat-button routerLink="/login">
+                    Login
+                </a>
+
+                <a mat-button routerLink="/register">
+                    Register
+                </a>
+
+            </div>
+        </div>
+        }
+
+    </mat-toolbar>
+</div>

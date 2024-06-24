@@ -1,0 +1,35 @@
+<div class="p-4">
+    <h1 class="text-xl font-bold mb-4">Edit Menu Item</h1>
+    <div class="mt-4">
+        <form>
+            <div class="mb-4">
+                <label for="name" class="block font-medium">Name:</label>
+                <input type="text" id="name" [(ngModel)]="editedMenuItem.name" name="name" required
+                    class="w-full border rounded-md py-2 px-3">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block font-medium">Description:</label>
+                <input type="text" id="description" [(ngModel)]="editedMenuItem.description" name="description" required
+                    class="w-full border rounded-md py-2 px-3">
+            </div>
+            <div class="mb-4">
+                <label for="price" class="block font-medium">Price:</label>
+                <input type="number" id="price" [(ngModel)]="editedMenuItem.price" name="price" required
+                    class="w-full border rounded-md py-2 px-3">
+            </div>
+            <div class="mb-4">
+                <label for="categoryName" class="block font-medium">Category:</label>
+                <select type="text" id="categoryName" [(ngModel)]="editedMenuItem.categoryName" name="categoryName" required
+                    class="w-full border rounded-md py-2 px-3">
+                    <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="flex justify-between">
+        <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+            (click)="onCancelClick()">Cancel</button>
+        <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            (click)="onSaveClick()">Save</button>
+    </div>
+</div>

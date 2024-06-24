@@ -1,0 +1,49 @@
+<div class="container mx-auto py-10">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">All Orders</h2>
+    <div *ngIf="allOrders.length > 0">
+        <div *ngFor="let order of allOrders; let i = index" class="mb-4 p-4 border rounded-md">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-lg font-semibold flex items-center">
+                    Order #{{ i + 1 }}
+                    <button (click)="editOrder(order)"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-2">Edit</button>
+                    <button (click)="deleteOrder(order.id)"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-2">Delete</button>
+                    
+                </h3>
+            </div>
+            <div class="mb-2">Table: {{ order.tableName }}</div>
+            <div class="mb-2">Status: {{ order.status }}</div>
+            <!-- Display orderItems -->
+            <div *ngIf="(orderItemsMap.get(order.id) | async) as orderItems">
+                <h4 class="text-md font-semibold mt-4 mb-2">Order Items:</h4>
+                <table class="min-w-full">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2">No.</th>
+                            <th class="px-4 py-2">Name</th>
+                            <th class="px-4 py-2">Quantity</th>
+                            <th class="px-4 py-2">Description</th>
+                            <th class="px-4 py-2">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let orderItem of orderItems; let j = index">
+                            <td class="border px-4 py-2">{{ j + 1 }}</td>
+                            <td class="border px-4 py-2">{{ getMenuItemName(orderItem.menuItemId) }}</td>
+                            <td class="border px-4 py-2">{{ orderItem.quantity }}</td>
+                            <td class="border px-4 py-2">{{ orderItem.description }}</td>
+                            <td class="border px-4 py-2 flex justify-center space-x-2">
+                                <button (click)="editOrderItem(orderItem)"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2">Edit</button>
+                                <button (click)="deleteOrderItem(order.id, orderItem.id)"
+                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="allOrders.length === 0" class="text-center text-gray-600">No orders available.</div>
+</div>

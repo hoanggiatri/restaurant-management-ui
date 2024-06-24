@@ -1,0 +1,27 @@
+<div class="p-4">
+    <h1 mat-dialog-title class="text-2xl font-bold text-gray-800">Edit Order Item</h1>
+    <div mat-dialog-content>
+        <form>
+            <div class="mb-4">
+                <label for="menuItemName" class="block text-sm font-medium text-gray-700">Name</label>
+                <div class="mt-1 block w-full bg-gray-100 p-2 rounded">{{getMenuItemName(data.menuItemId)}}</div>
+            </div>
+            <div class="mb-4">
+                <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+                <input id="quantity" type="number" [(ngModel)]="editedOrderItem.quantity" name="quantity"
+                    class="mt-1 block w-full border rounded-md p-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea id="description" [(ngModel)]="editedOrderItem.description" name="description"
+                    class="mt-1 block w-full border rounded-md p-2"></textarea>
+            </div>
+            <div mat-dialog-actions class="mt-4 flex justify-between">
+                <button mat-button (click)="cancel()"
+                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</button>
+                <button mat-button (click)="save()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

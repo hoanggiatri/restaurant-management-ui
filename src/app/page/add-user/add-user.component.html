@@ -1,0 +1,28 @@
+<div class="max-w-2xl mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-6">Add User</h1>
+    <form (ngSubmit)="saveUser()" class="space-y-6">
+        <div class="space-y-2">
+            <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name:</label>
+            <input id="fullName" [(ngModel)]="user.fullName" name="fullName" required
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+        <div class="space-y-2">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+            <input id="email" [(ngModel)]="user.email" name="email" required
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+        <div class="space-y-2">
+            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number:</label>
+            <input id="phoneNumber" [(ngModel)]="user.phoneNumber" name="phoneNumber" required
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+        <div class="space-y-2">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+            <input id="password" [(ngModel)]="user.password" name="password" required
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Save
+        </button>
+    </form>
+</div>

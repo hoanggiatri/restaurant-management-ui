@@ -1,0 +1,38 @@
+<div class="mx-60 py-10">
+  <h1 class="text-3xl font-bold">All tables</h1>
+  <div class="shadow-md rounded-md mt-4">
+    <!-- Add New Table Form -->
+    <div class="p-4">
+      <h2 class="text-xl font-bold mb-2">Add New Table</h2>
+      <label class="block">Name:</label>
+      <input type="text" [(ngModel)]="newTable.name" class="w-full border rounded-md py-2 px-3 mt-1">
+      <label class="block mt-4">Seats:</label>
+      <input type="number" [(ngModel)]="newTable.seats" class="w-full border rounded-md py-2 px-3 mt-1">
+      <button (click)="saveTable()"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Add Table</button>
+    </div>
+
+    <!-- Table Listing -->
+    <table class="w-full rounded-md">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Name</th>
+          <th class="border px-4 py-2">Seats</th>
+          <th class="border px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let table of tables" class="hover:bg-gray-100">
+          <td class="border px-4 py-2">{{ table.name }}</td>
+          <td class="border px-4 py-2">{{ table.seats }}</td>
+          <td class="border px-4 py-2 flex justify-center space-x-2" >
+            <button (click)="editTable(table)"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">Edit</button>
+            <button (click)="deleteTable(table.id)"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

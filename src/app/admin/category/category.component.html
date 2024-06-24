@@ -1,0 +1,53 @@
+<div class="mx-60 py-10">
+    <h1 class="text-3xl font-bold">All Categories</h1>
+    <div class="shadow-md rounded-md mt-4">
+        <!-- Form for adding new category -->
+        <div class="p-4">
+            <h2 class="text-xl font-bold mb-2">Add New Category</h2>
+            <form (submit)="saveCategory()" class="space-y-4">
+                <div>
+                    <label for="name" class="block font-medium">Name:</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="newCategory.name" required
+                        class="w-full border rounded-md py-2 px-3">
+                </div>
+                <div>
+                    <label for="description" class="block font-medium">Description:</label>
+                    <input type="text" id="description" name="description" [(ngModel)]="newCategory.description"
+                        required class="w-full border rounded-md py-2 px-3">
+                </div>
+                <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add</button>
+            </form>
+        </div>
+
+        <!-- Table for displaying categories -->
+        <table class="w-full rounded-md">
+            <!-- Table headers -->
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 border">Name</th>
+                    <th class="px-4 py-2 border">Description</th>
+                    <th class="px-4 py-2 border">Actions</th>
+                </tr>
+            </thead>
+
+            <!-- Table body -->
+            <tbody>
+                <!-- Rows for displaying categories -->
+                <tr *ngFor="let category of categories" class="hover:bg-gray-100">
+                    <td class="border px-4 py-2">{{ category.name }}</td>
+                    <td class="border px-4 py-2">{{ category.description }}</td>
+                    <td class="border px-4 py-2 flex justify-center space-x-2">
+                        <button mat-raised-button color="primary"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            (click)="editCategory(category)">Edit</button>
+                        <span class="mx-2"></span>
+                        <button mat-raised-button color="warn"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            (click)="deleteCategory(category.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
